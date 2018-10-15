@@ -5,6 +5,7 @@ import (
 	"io/ioutil"
 )
 
+//Page : Estrutura da página
 type Page struct {
 	Title string
 	Body  []byte
@@ -16,8 +17,8 @@ func (p *Page) save() error {
 }
 
 func loadPage(title string) (*Page, error) {
-	filename := title + ".txt"00
-	body, err := ioutil.ReadFile0(filename)
+	filename := title + ".txt"
+	body, err := ioutil.ReadFile(filename)
 	if err != nil {
 		return nil, err
 	}
