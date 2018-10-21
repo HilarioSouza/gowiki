@@ -1,17 +1,13 @@
 package main
 
 import (
-	"fmt"
+	"html/template"
 	"io/ioutil"
 	"log"
 	"net/http"
 )
 
-<<<<<<< HEAD
-//Page estrutura da página da wiki
-=======
 //Page : Estrutura da página
->>>>>>> 1b30a8bc6b9bf2b6904579d917c6ea4cbbd956cf
 type Page struct {
 	Title string
 	Body  []byte
@@ -44,7 +40,8 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		panic(err)
 	}
-	fmt.Fprintf(w, "<h1>%s</h'><div>%s</div>", p.Title, p.Body)
+	t, _ := template.ParseFiles("view.html")
+	t.Execute(w, p)
 }
 
 func editHandler(w http.ResponseWriter, r *http.Request) {
@@ -53,10 +50,6 @@ func editHandler(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		p = &Page{Title: title}
 	}
-	fmt.Fprintf(w, "<h1>Editing %s</h1>"+
-		"<form action=\"/save/%s\" method=\"POST\">"+
-		"<textarea name =\"body\">%s</textarea><br>"+
-		"<input type=\"sumit\" value=\"Save\">"+
-		"</form>",
-		p.Title, p.Title, p.Body)
+	t, _ := template.ParseFiles("edit.html")
+	t.Execute(w, p)
 }
