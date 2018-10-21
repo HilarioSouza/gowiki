@@ -7,7 +7,11 @@ import (
 	"net/http"
 )
 
+<<<<<<< HEAD
 //Page estrutura da página da wiki
+=======
+//Page : Estrutura da página
+>>>>>>> 1b30a8bc6b9bf2b6904579d917c6ea4cbbd956cf
 type Page struct {
 	Title string
 	Body  []byte
